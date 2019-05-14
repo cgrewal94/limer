@@ -8,8 +8,8 @@
 #' base64_to_df()
 #' }
 
-base64_to_df <- function(x, sep = ",") {
+base64_to_df <- function(x) {
   raw_csv <- rawToChar(base64enc::base64decode(x))
 
-  return(read_csv(textConnection(raw_csv), sep = sep))
+  return(read_csv(textConnection(raw_csv)))
 }
