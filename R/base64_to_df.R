@@ -11,5 +11,6 @@
 base64_to_df <- function(x, sep = ",") {
   raw_csv <- rawToChar(base64enc::base64decode(x))
 
-  return(read.csv(textConnection(raw_csv), stringsAsFactors = FALSE, sep = sep))
+  raw_data <- read.csv(textConnection(raw_csv), stringsAsFactors = FALSE, sep = sep)
+  colnames(raw_data) <- gsub("\\.", "_", gsub("\\.$", "", colnames(raw_data))) # change periods in variable names to _
 }
